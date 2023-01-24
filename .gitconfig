@@ -1,0 +1,10 @@
+[init]
+	defaultBranch = main
+[user]
+	email = arisuchr@riseup.net
+	name = Arisu Wonderland
+	signingkey = 1B68A6A1D6672D74
+[commit]
+	gpgsign = true
+[core]
+	editor = nano

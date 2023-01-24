@@ -1,0 +1,14 @@
+set autoindent  # Auto intent
+set mouse       # Mouse support
+set noconvert   # No converting from DOS/MAC line endings
+set regexp      # Regexp-based search
+set linenumbers # Line numbers
+set magic       # Use libmagic to determine the syntax
+set unix        # Use Unix line endings by default
+set indicator   # Show an indicator (position+portion)
+set smarthome   # Make the Home key smarter
+set stateflags  # Show state flags
+set nonewlines  # Remove empty line on EOF
+
+# Enable syntax highlighting
+include /usr/share/nano/**.*
