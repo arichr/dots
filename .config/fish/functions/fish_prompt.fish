@@ -4,7 +4,7 @@ function fish_prompt --description 'Write out the prompt'
 	set -l status_color (set_color cccccc)
 	set -l cwd_color (set_color $fish_color_cwd)
 	set -l vcs_color (set_color brpurple)
-	set -l software_color (set_color cyan)
+	set -l software_color (set_color blue)
 	set -l prompt_status ""
 	set -l software_status ""
 
@@ -28,9 +28,10 @@ function fish_prompt --description 'Write out the prompt'
 	end
 
 	if set -q VIRTUAL_ENV
-		set software_status " with  $(string sub -s 8 $(python --version)) ($(basename $VIRTUAL_ENV))"
+		set software_status " <Python $(string sub -s 8 $(python --version))>"
+		set software_info "($(basename $VIRTUAL_ENV))"
 	end
 
-	echo -s (prompt_login) ' ' $cwd_color (prompt_pwd) $vcs_color (fish_vcs_prompt) $software_color $software_status $normal ' ' $prompt_status
+	echo -s (prompt_login) ' ' $cwd_color (prompt_pwd) $vcs_color (fish_vcs_prompt) $software_color $software_status $normal ' ' $software_info ' ' $prompt_status
 	echo -n -s $status_color $suffix ' ' $normal
 end
