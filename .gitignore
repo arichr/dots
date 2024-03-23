@@ -5,12 +5,18 @@ __pycache__/
 
 # Modules' leftovers
 .pytest_cache/
+.ruff_cache/
 node_modules/
 .venv/
 dist/
 venv/
 
+# Code coverage
+.coverage
+coverage.xml
+
 # Build artifacts
+site/
 build/
 
 # Text editors, IDEs

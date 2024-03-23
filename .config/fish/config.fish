@@ -7,11 +7,12 @@ alias pls="sudo"
 alias please="sudo"
 ## General
 alias ls='lsd --group-directories-first'
-alias l='ls -A'
-alias ll='ls -Alh'
-alias findtodo='grep -Fri "TODO:" . && grep -Fri "BUG" . && grep -Fri "FIXME" .'
+alias l='ls -AFh'
+alias ll='ls -AFlh --permission octal'
+alias findtodo='grep -FIrin "TODO:" .; grep -FIrin "BUG:" . ; grep -FIrin "FIXME:" .'
 alias rmv='rm -v'
 alias mvv='mv -v'
+alias fsize='ls -1Flh'
 ## Pacman
 alias pac='sudo pacman'
 alias rmp='sudo pacman -Rcnsu'
@@ -23,9 +24,7 @@ alias pautoremove="pacman -Qdtq | xargs sudo pacman -Rcnsu --confirm"
 alias py='python'
 alias po='poetry'
 ## C/C++
-alias cppc='g++ -Wall -Werror=all -std=c++17'
-alias cppcp='g++ -Wall -Werror=all -std=c++17 -fpermissive'
-alias cppcpp='g++ -Wall -std=c++17 -fpermissive'
+alias strip_all='strip -s -g -d -S --strip-debug --strip-dwo --strip-unneeded -X'
 ## Android
 alias adbshot='adb shell screencap /sdcard/screenshot.png && adb pull /sdcard/screenshot.png screenshot.png'
 ## Network
@@ -52,18 +51,6 @@ function mkv --description "mkv"
 end
 
 ## Useful
-function fsize --description "Get file size via ls"
-	if [ -f "$argv[1]" ]
-		/bin/ls -sh "$argv[1]"
-	else if [ -n "$argv[1]" ]
-		echo "Unable to locate file $argv[1]" 1>&2
-		return 1
-	else
-		echo "Usage: fsize <file>" 1>&2
-		return 1
-	end
-end
-
 function child --description "Create a child process without stderr output"
 	if [ -n "$argv" ]
 		$argv 2>/dev/null &
@@ -92,7 +79,7 @@ function neofox
 
 	if [ "$(grep en /etc/locale.conf)" ]
 		set NMCLI_REGEX_ACTIVE '[^dis]connected'
-	else if [ "$(grep en /etc/locale.conf)" ]
+	else if [ "$(grep ru /etc/locale.conf)" ]
 		set NMCLI_REGEX_ACTIVE '[^не\s]подключено'
 	end
 	set -l ACTIVE_INTERFACES "$(nmcli d | grep $NMCLI_REGEX_ACTIVE | awk 'BEGIN { ORS="" } { print p$1; p="'", "'" } END { print "'"\\n"'" }')"
